@@ -1,0 +1,533 @@
+{
+  "prefix": "!",
+  "commands": [
+    {
+      "name": "ban",
+      "usage": "!ban <@user/ID> [reason]",
+      "description": "Permanently bans a user from the server.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "BAN_MEMBERS"
+      ]
+    },
+    {
+      "name": "unban",
+      "usage": "!unban <ID>",
+      "description": "Revokes an existing ban using the user's ID.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "BAN_MEMBERS"
+      ]
+    },
+    {
+      "name": "antiban",
+      "usage": "!antiban <@user/@role>",
+      "description": "Toggles protective status on a user/role to shield them from bans.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "tempban",
+      "usage": "!tempban <@user> <duration> [reason]",
+      "description": "Bans a user for a specific duration.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "BAN_MEMBERS"
+      ]
+    },
+    {
+      "name": "softban",
+      "usage": "!softban <@user> [reason]",
+      "description": "Bans and instantly unbans a user to clear their recent history.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "BAN_MEMBERS"
+      ]
+    },
+    {
+      "name": "kick",
+      "usage": "!kick <@user> [reason]",
+      "description": "Removes a user from the server.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "KICK_MEMBERS"
+      ]
+    },
+    {
+      "name": "mute",
+      "usage": "!mute <@user> [reason]",
+      "description": "Restricts a user from typing or speaking.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "MUTE_MEMBERS"
+      ]
+    },
+    {
+      "name": "unmute",
+      "usage": "!unmute <@user>",
+      "description": "Restores a user's ability to type or speak.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "MUTE_MEMBERS"
+      ]
+    },
+    {
+      "name": "tempmute",
+      "usage": "!tempmute <@user> <duration>",
+      "description": "Mutes a user for a set time frame.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "MUTE_MEMBERS"
+      ]
+    },
+    {
+      "name": "warn",
+      "usage": "!warn <@user> <reason>",
+      "description": "Issues a formal warning to a user, logged in history.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "KICK_MEMBERS"
+      ]
+    },
+    {
+      "name": "unwarn",
+      "usage": "!unwarn <@user> <warn_id>",
+      "description": "Removes a specific warning index from a user's record.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "KICK_MEMBERS"
+      ]
+    },
+    {
+      "name": "warns",
+      "usage": "!warns <@user>",
+      "description": "Displays the active warning history for a specific user.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "KICK_MEMBERS"
+      ]
+    },
+    {
+      "name": "clearwarns",
+      "usage": "!clearwarns <@user>",
+      "description": "Wipes all warning records for a user.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "case",
+      "usage": "!case <case_id>",
+      "description": "Displays detailed information about a specific moderation action.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "KICK_MEMBERS"
+      ]
+    },
+    {
+      "name": "lock",
+      "usage": "!lock",
+      "description": "Prevents regular users from sending messages in the current channel.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "MANAGE_CHANNELS"
+      ]
+    },
+    {
+      "name": "unlock",
+      "usage": "!unlock",
+      "description": "Restores regular messaging permissions to a locked channel.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "MANAGE_CHANNELS"
+      ]
+    },
+    {
+      "name": "purge",
+      "usage": "!purge <amount>",
+      "description": "Deletes a specified amount of messages in a channel.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "MANAGE_MESSAGES"
+      ]
+    },
+    {
+      "name": "shadowban",
+      "usage": "!shadowban <@user>",
+      "description": "Hides a user's messages from everyone else without notice.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "unshadowban",
+      "usage": "!unshadowban <@user>",
+      "description": "Removes the shadowban status from a user.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "jail",
+      "usage": "!jail <@user>",
+      "description": "Restricts a user to a private, isolated channel.",
+      "category": "Moderation & Security",
+      "permissions": [
+        "MUTE_MEMBERS"
+      ]
+    },
+    {
+      "name": "unjail",
+      "usage": "!unjail <@user>",
+      "description": "Releases a user from the jail channel.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MUTE_MEMBERS"
+      ]
+    },
+    {
+      "name": "lockdown",
+      "usage": "!lockdown",
+      "description": "Instantly locks all public channels in the server.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "unlockdown",
+      "usage": "!unlockdown",
+      "description": "Restores the server to its normal state after a lockdown.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "announce",
+      "usage": "!announce <#channel> <message>",
+      "description": "Sends an embedded, formatted announcement.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_MESSAGES"
+      ]
+    },
+    {
+      "name": "poll",
+      "usage": "!poll <question>",
+      "description": "Creates a reaction-based question poll for the community.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_MESSAGES"
+      ]
+    },
+    {
+      "name": "pin",
+      "usage": "!pin <message_id>",
+      "description": "Pins a specific message to the top of the current channel.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_MESSAGES"
+      ]
+    },
+    {
+      "name": "unpin",
+      "usage": "!unpin <message_id>",
+      "description": "Unpins a message from the channel.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_MESSAGES"
+      ]
+    },
+    {
+      "name": "nuke",
+      "usage": "!nuke",
+      "description": "Clones a channel, deletes the old one, and resets history.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_CHANNELS"
+      ]
+    },
+    {
+      "name": "slowmode",
+      "usage": "!slowmode <seconds>",
+      "description": "Sets a delay cooldown between user messages in a channel.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_CHANNELS"
+      ]
+    },
+    {
+      "name": "filter-add",
+      "usage": "!filter-add <word>",
+      "description": "Adds a word or phrase to the automated chat filter.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "filter-remove",
+      "usage": "!filter-remove <word>",
+      "description": "Removes a word or phrase from the automated chat filter.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "filter-list",
+      "usage": "!filter-list",
+      "description": "Displays the list of currently blacklisted words.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_MESSAGES"
+      ]
+    },
+    {
+      "name": "emoji-add",
+      "usage": "!emoji-add <url> <name>",
+      "description": "Adds a custom emoji to the server via an image link.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_EMOJIS"
+      ]
+    },
+    {
+      "name": "emoji-remove",
+      "usage": "!emoji-remove <emoji_name>",
+      "description": "Deletes a custom emoji from the server.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_EMOJIS"
+      ]
+    },
+    {
+      "name": "serverinfo",
+      "usage": "!serverinfo",
+      "description": "Displays comprehensive technical information about the server.",
+      "category": "Server & Channel Utility",
+      "permissions": []
+    },
+    {
+      "name": "channelinfo",
+      "usage": "!channelinfo",
+      "description": "Displays details and permissions of the current channel.",
+      "category": "Server & Channel Utility",
+      "permissions": []
+    },
+    {
+      "name": "botinfo",
+      "usage": "!botinfo",
+      "description": "Shows bot ping, latency, uptime, and system status.",
+      "category": "Server & Channel Utility",
+      "permissions": []
+    },
+    {
+      "name": "invite",
+      "usage": "!invite",
+      "description": "Generates a secure, temporary server invitation link.",
+      "category": "Server & Channel Utility",
+      "permissions": []
+    },
+    {
+      "name": "invites",
+      "usage": "!invites",
+      "description": "Lists all active invite codes and their usage counts.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_GUILD"
+      ]
+    },
+    {
+      "name": "clean",
+      "usage": "!clean <amount>",
+      "description": "Clears command calls and bot responses to keep chat tidy.",
+      "category": "Server & Channel Utility",
+      "permissions": [
+        "MANAGE_MESSAGES"
+      ]
+    },
+    {
+      "name": "role-add",
+      "usage": "!role-add <@user> <@role>",
+      "description": "Assigns a specific role to a user.",
+      "category": "User & Role Management",
+      "permissions": [
+        "MANAGE_ROLES"
+      ]
+    },
+    {
+      "name": "role-remove",
+      "usage": "!role-remove <@user> <@role>",
+      "description": "Removes a specific role from a user.",
+      "category": "User & Role Management",
+      "permissions": [
+        "MANAGE_ROLES"
+      ]
+    },
+    {
+      "name": "role-create",
+      "usage": "!role-create <name>",
+      "description": "Creates a new role with custom name and permission sets.",
+      "category": "User & Role Management",
+      "permissions": [
+        "MANAGE_ROLES"
+      ]
+    },
+    {
+      "name": "role-delete",
+      "usage": "!role-delete <@role>",
+      "description": "Deletes an existing role from the server database.",
+      "category": "User & Role Management",
+      "permissions": [
+        "MANAGE_ROLES"
+      ]
+    },
+    {
+      "name": "role-rename",
+      "usage": "!role-rename <@role> <new_name>",
+      "description": "Renames an existing role without altering its permissions.",
+      "category": "User & Role Management",
+      "permissions": [
+        "MANAGE_ROLES"
+      ]
+    },
+    {
+      "name": "userinfo",
+      "usage": "!userinfo [@user]",
+      "description": "Displays a user's join date, roles, and profile details.",
+      "category": "User & Role Management",
+      "permissions": []
+    },
+    {
+      "name": "avatar",
+      "usage": "!avatar [@user]",
+      "description": "Displays a high-resolution version of a user's profile picture.",
+      "category": "User & Role Management",
+      "permissions": []
+    },
+    {
+      "name": "nickname",
+      "usage": "!nickname <@user> <new_name>",
+      "description": "Changes a user's display name inside the server.",
+      "category": "User & Role Management",
+      "permissions": [
+        "MANAGE_NICKNAMES"
+      ]
+    },
+    {
+      "name": "massrole",
+      "usage": "!massrole <@role>",
+      "description": "Assigns a specific role to all users currently in the server.",
+      "category": "User & Role Management",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "derole",
+      "usage": "!derole <@role>",
+      "description": "Removes a specific role from all members who hold it.",
+      "category": "User & Role Management",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "audit",
+      "usage": "!audit",
+      "description": "Retrieves the latest actions recorded in the audit log.",
+      "category": "User & Role Management",
+      "permissions": [
+        "VIEW_AUDIT_LOG"
+      ]
+    },
+    {
+      "name": "deafen",
+      "usage": "!deafen <@user>",
+      "description": "Deafens a user in their active voice channel.",
+      "category": "User & Role Management",
+      "permissions": [
+        "DEAFEN_MEMBERS"
+      ]
+    },
+    {
+      "name": "undeafen",
+      "usage": "!undeafen <@user>",
+      "description": "Restores a user's hearing in their active voice channel.",
+      "category": "User & Role Management",
+      "permissions": [
+        "DEAFEN_MEMBERS"
+      ]
+    },
+    {
+      "name": "voicekick",
+      "usage": "!voicekick <@user>",
+      "description": "Disconnects a user from a voice channel.",
+      "category": "User & Role Management",
+      "permissions": [
+        "MOVE_MEMBERS"
+      ]
+    },
+    {
+      "name": "voicemove",
+      "usage": "!voicemove <@user> <#voice_channel>",
+      "description": "Moves a user from one voice channel to another.",
+      "category": "User & Role Management",
+      "permissions": [
+        "MOVE_MEMBERS"
+      ]
+    },
+    {
+      "name": "add-bypass",
+      "usage": "!add-bypass <@user/@role>",
+      "description": "Grants a user/role immunity from the spam/word filter.",
+      "category": "User & Role Management",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "remove-bypass",
+      "usage": "!remove-bypass <@user/@role>",
+      "description": "Revokes filter immunity from a user/role.",
+      "category": "User & Role Management",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "whitelist-add",
+      "usage": "!whitelist-add <ID>",
+      "description": "Adds a user's account to a secure server whitelist.",
+      "category": "User & Role Management",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "whitelist-remove",
+      "usage": "!whitelist-remove <ID>",
+      "description": "Removes a user's account from the server whitelist.",
+      "category": "User & Role Management",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    },
+    {
+      "name": "status",
+      "usage": "!status <activity> <text>",
+      "description": "Updates the bot's custom status message.",
+      "category": "User & Role Management",
+      "permissions": [
+        "ADMINISTRATOR"
+      ]
+    }
+  ]
+}
