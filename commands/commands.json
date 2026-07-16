@@ -2,532 +2,820 @@
   "prefix": "!",
   "commands": [
     {
-      "name": "ban",
-      "usage": "!ban <@user/ID> [reason]",
-      "description": "Permanently bans a user from the server.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "BAN_MEMBERS"
-      ]
+      "name": "ai",
+      "usage": "!ai <query>",
+      "description": "AI-powered response system",
+      "category": "AI & Utilities",
+      "permissions": [],
+      "enabled": false
     },
     {
-      "name": "unban",
-      "usage": "!unban <ID>",
-      "description": "Revokes an existing ban using the user's ID.",
+      "name": "alive",
+      "usage": "!alive",
+      "description": "Checks if the bot is responsive",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "anime",
+      "usage": "!anime <name>",
+      "description": "Search for anime information",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "antibadword",
+      "usage": "!antibadword",
+      "description": "Toggles bad word filter",
       "category": "Moderation & Security",
-      "permissions": [
-        "BAN_MEMBERS"
-      ]
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "anticall",
+      "usage": "!anticall",
+      "description": "Toggles anti-call protection",
+      "category": "Moderation & Security",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "antidelete",
+      "usage": "!antidelete",
+      "description": "Toggles anti-delete protection",
+      "category": "Moderation & Security",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "antilink",
+      "usage": "!antilink",
+      "description": "Toggles anti-link filter",
+      "category": "Moderation & Security",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "antitag",
+      "usage": "!antitag",
+      "description": "Toggles anti-tag protection",
+      "category": "Moderation & Security",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
     },
     {
       "name": "antiban",
       "usage": "!antiban <@user/@role>",
       "description": "Toggles protective status on a user/role to shield them from bans.",
       "category": "Moderation & Security",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
     },
     {
-      "name": "tempban",
-      "usage": "!tempban <@user> <duration> [reason]",
-      "description": "Bans a user for a specific duration.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "BAN_MEMBERS"
-      ]
+      "name": "attp",
+      "usage": "!attp <text>",
+      "description": "Creates ASCII text art",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
     },
     {
-      "name": "softban",
-      "usage": "!softban <@user> [reason]",
-      "description": "Bans and instantly unbans a user to clear their recent history.",
+      "name": "autoread",
+      "usage": "!autoread",
+      "description": "Toggles auto-read feature",
+      "category": "Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "autostatus",
+      "usage": "!autostatus",
+      "description": "Toggles auto-status updates",
+      "category": "Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "autotyping",
+      "usage": "!autotyping",
+      "description": "Toggles auto-typing indicator",
+      "category": "Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "ban",
+      "usage": "!ban <@user/ID> [reason]",
+      "description": "Permanently bans a user from the server.",
       "category": "Moderation & Security",
-      "permissions": [
-        "BAN_MEMBERS"
-      ]
+      "permissions": ["BAN_MEMBERS"],
+      "enabled": false
+    },
+    {
+      "name": "character",
+      "usage": "!character <name>",
+      "description": "Get character information",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "chatbot",
+      "usage": "!chatbot",
+      "description": "Toggles chatbot mode",
+      "category": "AI & Utilities",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "clear",
+      "usage": "!clear <amount>",
+      "description": "Clears messages from channel",
+      "category": "Moderation & Security",
+      "permissions": ["MANAGE_MESSAGES"],
+      "enabled": false
+    },
+    {
+      "name": "clearsession",
+      "usage": "!clearsession",
+      "description": "Clears session data",
+      "category": "Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "cleartmp",
+      "usage": "!cleartmp",
+      "description": "Clears temporary files",
+      "category": "Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "compliment",
+      "usage": "!compliment [@user]",
+      "description": "Sends a random compliment",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "dare",
+      "usage": "!dare",
+      "description": "Gives a random dare",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "delete",
+      "usage": "!delete <message_id>",
+      "description": "Deletes a specific message",
+      "category": "Moderation & Security",
+      "permissions": ["MANAGE_MESSAGES"],
+      "enabled": false
+    },
+    {
+      "name": "demote",
+      "usage": "!demote <@user>",
+      "description": "Demotes a user rank/role",
+      "category": "User & Role Management",
+      "permissions": ["MANAGE_ROLES"],
+      "enabled": false
+    },
+    {
+      "name": "eightball",
+      "usage": "!eightball <question>",
+      "description": "Magic 8-ball responses",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "emojimix",
+      "usage": "!emojimix <emoji1> <emoji2>",
+      "description": "Mixes two emojis together",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "facebook",
+      "usage": "!facebook <url>",
+      "description": "Downloads from Facebook",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "fact",
+      "usage": "!fact",
+      "description": "Generates random facts",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "flirt",
+      "usage": "!flirt [@user]",
+      "description": "Sends a flirty message",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "gif",
+      "usage": "!gif <query>",
+      "description": "Searches and posts GIFs",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "github",
+      "usage": "!github <username>",
+      "description": "Gets GitHub user info",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "goodbye",
+      "usage": "!goodbye",
+      "description": "Says goodbye message",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "goodnight",
+      "usage": "!goodnight",
+      "description": "Says goodnight message",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "groupinfo",
+      "usage": "!groupinfo",
+      "description": "Shows group/server information",
+      "category": "Server & Channel Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "groupmanage",
+      "usage": "!groupmanage",
+      "description": "Group management controls",
+      "category": "Server & Channel Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "hangman",
+      "usage": "!hangman",
+      "description": "Plays hangman game",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "help",
+      "usage": "!help [command]",
+      "description": "Shows help information",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "hidetag",
+      "usage": "!hidetag <message>",
+      "description": "Hides tags in messages",
+      "category": "Utility",
+      "permissions": ["MANAGE_MESSAGES"],
+      "enabled": false
+    },
+    {
+      "name": "igs",
+      "usage": "!igs <url>",
+      "description": "Downloads from Instagram",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "imagine",
+      "usage": "!imagine <prompt>",
+      "description": "AI image generation",
+      "category": "AI & Utilities",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "img-blur",
+      "usage": "!img-blur <image>",
+      "description": "Blurs image content",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "instagram",
+      "usage": "!instagram <username>",
+      "description": "Gets Instagram user info",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "insult",
+      "usage": "!insult [@user]",
+      "description": "Sends a random insult",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "joke",
+      "usage": "!joke",
+      "description": "Tells a random joke",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
     },
     {
       "name": "kick",
       "usage": "!kick <@user> [reason]",
       "description": "Removes a user from the server.",
       "category": "Moderation & Security",
-      "permissions": [
-        "KICK_MEMBERS"
-      ]
+      "permissions": ["KICK_MEMBERS"],
+      "enabled": false
+    },
+    {
+      "name": "lyrics",
+      "usage": "!lyrics <song_name>",
+      "description": "Searches for song lyrics",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "meme",
+      "usage": "!meme",
+      "description": "Posts random memes",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "mention",
+      "usage": "!mention [@user] <message>",
+      "description": "Mentions user with message",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "misc",
+      "usage": "!misc",
+      "description": "Miscellaneous utilities",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
     },
     {
       "name": "mute",
       "usage": "!mute <@user> [reason]",
       "description": "Restricts a user from typing or speaking.",
       "category": "Moderation & Security",
-      "permissions": [
-        "MUTE_MEMBERS"
-      ]
+      "permissions": ["MUTE_MEMBERS"],
+      "enabled": false
+    },
+    {
+      "name": "news",
+      "usage": "!news [topic]",
+      "description": "Gets news updates",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "owner",
+      "usage": "!owner",
+      "description": "Shows bot owner info",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "pair",
+      "usage": "!pair [@user1] [@user2]",
+      "description": "Pairs users together",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "pies",
+      "usage": "!pies",
+      "description": "Shows pie charts",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "ping",
+      "usage": "!ping",
+      "description": "Shows bot ping/latency",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "play",
+      "usage": "!play <song_name>",
+      "description": "Plays music in voice channel",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "pmblocker",
+      "usage": "!pmblocker",
+      "description": "Toggles PM blocker",
+      "category": "Moderation & Security",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "promote",
+      "usage": "!promote <@user>",
+      "description": "Promotes a user rank/role",
+      "category": "User & Role Management",
+      "permissions": ["MANAGE_ROLES"],
+      "enabled": false
+    },
+    {
+      "name": "quote",
+      "usage": "!quote",
+      "description": "Generates random quotes",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "remini",
+      "usage": "!remini <image>",
+      "description": "Enhances image quality",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "removebg",
+      "usage": "!removebg <image>",
+      "description": "Removes background from image",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "resetlink",
+      "usage": "!resetlink",
+      "description": "Resets invite links",
+      "category": "Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "roseday",
+      "usage": "!roseday",
+      "description": "Rose day celebration info",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "setpp",
+      "usage": "!setpp <image>",
+      "description": "Sets profile picture",
+      "category": "Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "settings",
+      "usage": "!settings [key] [value]",
+      "description": "Bot settings management",
+      "category": "Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "shayari",
+      "usage": "!shayari",
+      "description": "Posts Urdu poetry",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "ship",
+      "usage": "!ship [@user1] [@user2]",
+      "description": "Ships two users together",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "simage",
+      "usage": "!simage <query>",
+      "description": "Searches for images",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "simp",
+      "usage": "!simp [@user]",
+      "description": "Simp for a user",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "song",
+      "usage": "!song <name>",
+      "description": "Searches for songs",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "sora",
+      "usage": "!sora <prompt>",
+      "description": "OpenAI Sora video generation",
+      "category": "AI & Utilities",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "spotify",
+      "usage": "!spotify <song_name>",
+      "description": "Spotify song search",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "ss",
+      "usage": "!ss <url>",
+      "description": "Takes screenshots",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "staff",
+      "usage": "!staff",
+      "description": "Shows staff list",
+      "category": "Server & Channel Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "sticker-alt",
+      "usage": "!sticker-alt <image>",
+      "description": "Creates sticker alternative",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "sticker",
+      "usage": "!sticker <image>",
+      "description": "Creates stickers",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "stickercrop",
+      "usage": "!stickercrop <image>",
+      "description": "Crops image to sticker",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "stickertelegram",
+      "usage": "!stickertelegram <query>",
+      "description": "Gets Telegram stickers",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "stupid",
+      "usage": "!stupid",
+      "description": "Random stupid fact",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "sudo",
+      "usage": "!sudo <command>",
+      "description": "Executes sudo commands",
+      "category": "Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "tag",
+      "usage": "!tag [@user] <message>",
+      "description": "Tags user with message",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "tagall",
+      "usage": "!tagall <message>",
+      "description": "Tags all users in server",
+      "category": "Moderation & Security",
+      "permissions": ["MENTION_EVERYONE"],
+      "enabled": false
+    },
+    {
+      "name": "tagnotadmin",
+      "usage": "!tagnotadmin <message>",
+      "description": "Tags non-admin users",
+      "category": "Moderation & Security",
+      "permissions": ["MANAGE_MESSAGES"],
+      "enabled": false
+    },
+    {
+      "name": "take",
+      "usage": "!take <@user> <@role>",
+      "description": "Takes role from user",
+      "category": "User & Role Management",
+      "permissions": ["MANAGE_ROLES"],
+      "enabled": false
+    },
+    {
+      "name": "textmaker",
+      "usage": "!textmaker <style> <text>",
+      "description": "Creates styled text",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "tictactoe",
+      "usage": "!tictactoe [@user]",
+      "description": "Plays tic-tac-toe game",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "tiktok",
+      "usage": "!tiktok <url>",
+      "description": "Downloads TikTok videos",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "topmembers",
+      "usage": "!topmembers",
+      "description": "Shows top active members",
+      "category": "Server & Channel Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "translate",
+      "usage": "!translate <language> <text>",
+      "description": "Translates text",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "trivia",
+      "usage": "!trivia",
+      "description": "Plays trivia game",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "truth",
+      "usage": "!truth",
+      "description": "Truth or dare question",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "tts",
+      "usage": "!tts <text>",
+      "description": "Text to speech",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "unban",
+      "usage": "!unban <ID>",
+      "description": "Revokes an existing ban using the user's ID.",
+      "category": "Moderation & Security",
+      "permissions": ["BAN_MEMBERS"],
+      "enabled": false
     },
     {
       "name": "unmute",
       "usage": "!unmute <@user>",
       "description": "Restores a user's ability to type or speak.",
       "category": "Moderation & Security",
-      "permissions": [
-        "MUTE_MEMBERS"
-      ]
+      "permissions": ["MUTE_MEMBERS"],
+      "enabled": false
     },
     {
-      "name": "tempmute",
-      "usage": "!tempmute <@user> <duration>",
-      "description": "Mutes a user for a set time frame.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "MUTE_MEMBERS"
-      ]
+      "name": "update",
+      "usage": "!update",
+      "description": "Updates bot features",
+      "category": "Utility",
+      "permissions": ["ADMINISTRATOR"],
+      "enabled": false
+    },
+    {
+      "name": "url",
+      "usage": "!url <query>",
+      "description": "Shortens URLs",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "video",
+      "usage": "!video <url>",
+      "description": "Downloads videos",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
+    },
+    {
+      "name": "viewonce",
+      "usage": "!viewonce <file>",
+      "description": "View-once media sharing",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
     },
     {
       "name": "warn",
       "usage": "!warn <@user> <reason>",
       "description": "Issues a formal warning to a user, logged in history.",
       "category": "Moderation & Security",
-      "permissions": [
-        "KICK_MEMBERS"
-      ]
+      "permissions": ["KICK_MEMBERS"],
+      "enabled": false
     },
     {
-      "name": "unwarn",
-      "usage": "!unwarn <@user> <warn_id>",
-      "description": "Removes a specific warning index from a user's record.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "KICK_MEMBERS"
-      ]
-    },
-    {
-      "name": "warns",
-      "usage": "!warns <@user>",
+      "name": "warnings",
+      "usage": "!warnings <@user>",
       "description": "Displays the active warning history for a specific user.",
       "category": "Moderation & Security",
-      "permissions": [
-        "KICK_MEMBERS"
-      ]
+      "permissions": ["KICK_MEMBERS"],
+      "enabled": false
     },
     {
-      "name": "clearwarns",
-      "usage": "!clearwarns <@user>",
-      "description": "Wipes all warning records for a user.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
+      "name": "wasted",
+      "usage": "!wasted <image>",
+      "description": "Wasted meme effect",
+      "category": "Entertainment",
+      "permissions": [],
+      "enabled": false
     },
     {
-      "name": "case",
-      "usage": "!case <case_id>",
-      "description": "Displays detailed information about a specific moderation action.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "KICK_MEMBERS"
-      ]
+      "name": "weather",
+      "usage": "!weather <location>",
+      "description": "Shows weather info",
+      "category": "Utility",
+      "permissions": [],
+      "enabled": false
     },
     {
-      "name": "lock",
-      "usage": "!lock",
-      "description": "Prevents regular users from sending messages in the current channel.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "MANAGE_CHANNELS"
-      ]
-    },
-    {
-      "name": "unlock",
-      "usage": "!unlock",
-      "description": "Restores regular messaging permissions to a locked channel.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "MANAGE_CHANNELS"
-      ]
-    },
-    {
-      "name": "purge",
-      "usage": "!purge <amount>",
-      "description": "Deletes a specified amount of messages in a channel.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "MANAGE_MESSAGES"
-      ]
-    },
-    {
-      "name": "shadowban",
-      "usage": "!shadowban <@user>",
-      "description": "Hides a user's messages from everyone else without notice.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "unshadowban",
-      "usage": "!unshadowban <@user>",
-      "description": "Removes the shadowban status from a user.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "jail",
-      "usage": "!jail <@user>",
-      "description": "Restricts a user to a private, isolated channel.",
-      "category": "Moderation & Security",
-      "permissions": [
-        "MUTE_MEMBERS"
-      ]
-    },
-    {
-      "name": "unjail",
-      "usage": "!unjail <@user>",
-      "description": "Releases a user from the jail channel.",
+      "name": "welcome",
+      "usage": "!welcome",
+      "description": "Welcome message",
       "category": "Server & Channel Utility",
-      "permissions": [
-        "MUTE_MEMBERS"
-      ]
-    },
-    {
-      "name": "lockdown",
-      "usage": "!lockdown",
-      "description": "Instantly locks all public channels in the server.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "unlockdown",
-      "usage": "!unlockdown",
-      "description": "Restores the server to its normal state after a lockdown.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "announce",
-      "usage": "!announce <#channel> <message>",
-      "description": "Sends an embedded, formatted announcement.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_MESSAGES"
-      ]
-    },
-    {
-      "name": "poll",
-      "usage": "!poll <question>",
-      "description": "Creates a reaction-based question poll for the community.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_MESSAGES"
-      ]
-    },
-    {
-      "name": "pin",
-      "usage": "!pin <message_id>",
-      "description": "Pins a specific message to the top of the current channel.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_MESSAGES"
-      ]
-    },
-    {
-      "name": "unpin",
-      "usage": "!unpin <message_id>",
-      "description": "Unpins a message from the channel.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_MESSAGES"
-      ]
-    },
-    {
-      "name": "nuke",
-      "usage": "!nuke",
-      "description": "Clones a channel, deletes the old one, and resets history.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_CHANNELS"
-      ]
-    },
-    {
-      "name": "slowmode",
-      "usage": "!slowmode <seconds>",
-      "description": "Sets a delay cooldown between user messages in a channel.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_CHANNELS"
-      ]
-    },
-    {
-      "name": "filter-add",
-      "usage": "!filter-add <word>",
-      "description": "Adds a word or phrase to the automated chat filter.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "filter-remove",
-      "usage": "!filter-remove <word>",
-      "description": "Removes a word or phrase from the automated chat filter.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "filter-list",
-      "usage": "!filter-list",
-      "description": "Displays the list of currently blacklisted words.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_MESSAGES"
-      ]
-    },
-    {
-      "name": "emoji-add",
-      "usage": "!emoji-add <url> <name>",
-      "description": "Adds a custom emoji to the server via an image link.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_EMOJIS"
-      ]
-    },
-    {
-      "name": "emoji-remove",
-      "usage": "!emoji-remove <emoji_name>",
-      "description": "Deletes a custom emoji from the server.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_EMOJIS"
-      ]
-    },
-    {
-      "name": "serverinfo",
-      "usage": "!serverinfo",
-      "description": "Displays comprehensive technical information about the server.",
-      "category": "Server & Channel Utility",
-      "permissions": []
-    },
-    {
-      "name": "channelinfo",
-      "usage": "!channelinfo",
-      "description": "Displays details and permissions of the current channel.",
-      "category": "Server & Channel Utility",
-      "permissions": []
-    },
-    {
-      "name": "botinfo",
-      "usage": "!botinfo",
-      "description": "Shows bot ping, latency, uptime, and system status.",
-      "category": "Server & Channel Utility",
-      "permissions": []
-    },
-    {
-      "name": "invite",
-      "usage": "!invite",
-      "description": "Generates a secure, temporary server invitation link.",
-      "category": "Server & Channel Utility",
-      "permissions": []
-    },
-    {
-      "name": "invites",
-      "usage": "!invites",
-      "description": "Lists all active invite codes and their usage counts.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_GUILD"
-      ]
-    },
-    {
-      "name": "clean",
-      "usage": "!clean <amount>",
-      "description": "Clears command calls and bot responses to keep chat tidy.",
-      "category": "Server & Channel Utility",
-      "permissions": [
-        "MANAGE_MESSAGES"
-      ]
-    },
-    {
-      "name": "role-add",
-      "usage": "!role-add <@user> <@role>",
-      "description": "Assigns a specific role to a user.",
-      "category": "User & Role Management",
-      "permissions": [
-        "MANAGE_ROLES"
-      ]
-    },
-    {
-      "name": "role-remove",
-      "usage": "!role-remove <@user> <@role>",
-      "description": "Removes a specific role from a user.",
-      "category": "User & Role Management",
-      "permissions": [
-        "MANAGE_ROLES"
-      ]
-    },
-    {
-      "name": "role-create",
-      "usage": "!role-create <name>",
-      "description": "Creates a new role with custom name and permission sets.",
-      "category": "User & Role Management",
-      "permissions": [
-        "MANAGE_ROLES"
-      ]
-    },
-    {
-      "name": "role-delete",
-      "usage": "!role-delete <@role>",
-      "description": "Deletes an existing role from the server database.",
-      "category": "User & Role Management",
-      "permissions": [
-        "MANAGE_ROLES"
-      ]
-    },
-    {
-      "name": "role-rename",
-      "usage": "!role-rename <@role> <new_name>",
-      "description": "Renames an existing role without altering its permissions.",
-      "category": "User & Role Management",
-      "permissions": [
-        "MANAGE_ROLES"
-      ]
-    },
-    {
-      "name": "userinfo",
-      "usage": "!userinfo [@user]",
-      "description": "Displays a user's join date, roles, and profile details.",
-      "category": "User & Role Management",
-      "permissions": []
-    },
-    {
-      "name": "avatar",
-      "usage": "!avatar [@user]",
-      "description": "Displays a high-resolution version of a user's profile picture.",
-      "category": "User & Role Management",
-      "permissions": []
-    },
-    {
-      "name": "nickname",
-      "usage": "!nickname <@user> <new_name>",
-      "description": "Changes a user's display name inside the server.",
-      "category": "User & Role Management",
-      "permissions": [
-        "MANAGE_NICKNAMES"
-      ]
-    },
-    {
-      "name": "massrole",
-      "usage": "!massrole <@role>",
-      "description": "Assigns a specific role to all users currently in the server.",
-      "category": "User & Role Management",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "derole",
-      "usage": "!derole <@role>",
-      "description": "Removes a specific role from all members who hold it.",
-      "category": "User & Role Management",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "audit",
-      "usage": "!audit",
-      "description": "Retrieves the latest actions recorded in the audit log.",
-      "category": "User & Role Management",
-      "permissions": [
-        "VIEW_AUDIT_LOG"
-      ]
-    },
-    {
-      "name": "deafen",
-      "usage": "!deafen <@user>",
-      "description": "Deafens a user in their active voice channel.",
-      "category": "User & Role Management",
-      "permissions": [
-        "DEAFEN_MEMBERS"
-      ]
-    },
-    {
-      "name": "undeafen",
-      "usage": "!undeafen <@user>",
-      "description": "Restores a user's hearing in their active voice channel.",
-      "category": "User & Role Management",
-      "permissions": [
-        "DEAFEN_MEMBERS"
-      ]
-    },
-    {
-      "name": "voicekick",
-      "usage": "!voicekick <@user>",
-      "description": "Disconnects a user from a voice channel.",
-      "category": "User & Role Management",
-      "permissions": [
-        "MOVE_MEMBERS"
-      ]
-    },
-    {
-      "name": "voicemove",
-      "usage": "!voicemove <@user> <#voice_channel>",
-      "description": "Moves a user from one voice channel to another.",
-      "category": "User & Role Management",
-      "permissions": [
-        "MOVE_MEMBERS"
-      ]
-    },
-    {
-      "name": "add-bypass",
-      "usage": "!add-bypass <@user/@role>",
-      "description": "Grants a user/role immunity from the spam/word filter.",
-      "category": "User & Role Management",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "remove-bypass",
-      "usage": "!remove-bypass <@user/@role>",
-      "description": "Revokes filter immunity from a user/role.",
-      "category": "User & Role Management",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "whitelist-add",
-      "usage": "!whitelist-add <ID>",
-      "description": "Adds a user's account to a secure server whitelist.",
-      "category": "User & Role Management",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "whitelist-remove",
-      "usage": "!whitelist-remove <ID>",
-      "description": "Removes a user's account from the server whitelist.",
-      "category": "User & Role Management",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
-    },
-    {
-      "name": "status",
-      "usage": "!status <activity> <text>",
-      "description": "Updates the bot's custom status message.",
-      "category": "User & Role Management",
-      "permissions": [
-        "ADMINISTRATOR"
-      ]
+      "permissions": [],
+      "enabled": false
     }
   ]
 }
