@@ -1,162 +1,164 @@
-const {
-    default: makeWASocket,
-    useMultiFileAuthState,
-    DisconnectReason,
-    fetchLatestBaileysVersion,
-    delay
-} = require("@whiskeysockets/baileys");
-const pino = require("pino");
-const { Boom } = require("@hapi/boom");
-const readline = require("readline");
+/**
+ * BRIAN-TECH Respiratory Monitoring Application
+ * Entry point for the respiratory health tracking system
+ */
 
-// Setup readline interface for pairing code input in terminal
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-const question = (text) => new Promise((resolve) => rl.question(text, resolve));
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const config = require('./config');
 
-async function startBot() {
-    // 1. Manage session authentication (saves session credentials in './session' folder)
-    const { state, saveCreds } = await useMultiFileAuthState("./session");
-    const { version } = await fetchLatestBaileysVersion();
+const app = express();
 
-    // 2. Initialize the WhatsApp Socket connection
-    const sock = makeWASocket({
-        version,
-        auth: state,
-        printQRInTerminal: false, // Set to false since we are using pairing code
-        logger: pino({ level: "silent" }), // Keeps the console clean from spammy logs
-        browser: ["Ubuntu", "Chrome", "20.0.04"] // Required for pairing code reliability
-    });
+// ============= MIDDLEWARE =============
+app.use(cors());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
-    // 3. Handle Pairing Code Authentication (If not already logged in)
-    if (!sock.authState.creds.registered) {
-        console.clear();
-        console.log("\x1b[1;32m=== BRIAN-TECH WHATSAPP BOT PORTAL ===\x1b[0m\n");
-        const phoneNumber = await question("\x1b[1;36mEnter your phone number with Country Code (e.g., 254XXXXXXXXX):\x1b[0m ");
+// Request logging middleware
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
+    next();
+});
+
+// ============= DATABASE CONNECTION =============
+const connectDatabase = async () => {
+    try {
+        const mongoURI = process.env.MONGODB_URI || config.database.mongoURI;
         
-        // Clean the input (remove spaces, +, hyphens)
-        const formattedNumber = phoneNumber.replace(/[^0-9]/g, "");
-
-        if (formattedNumber.length < 10) {
-            console.log("\x1b[1;31mInvalid phone number format. Restarting...\x1b[0m");
-            process.exit(1);
-        }
-
-        console.log("\x1b[1;33m\nRequesting pairing code from WhatsApp servers...\x1b[0m");
-        await delay(3000); // Small delay to sync states securely
+        await mongoose.connect(mongoURI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverSelectionTimeoutMS: 5000,
+        });
         
-        try {
-            const code = await sock.requestPairingCode(formattedNumber);
-            console.log("\n-----------------------------------------");
-            console.log(`\x1b[1;32mYOUR PAIRING CODE IS:\x1b[0m \x1b[1;37;42m  ${code}  \x1b[0m`);
-            console.log("-----------------------------------------");
-            console.log("\x1b[5;33mOpen WhatsApp -> Linked Devices -> Link with Phone Number\x1b[0m\n");
-        } catch (error) {
-            console.error("Failed to fetch pairing code: ", error);
-            process.exit(1);
-        }
+        console.log('✅ MongoDB Connected Successfully');
+    } catch (error) {
+        console.error('❌ MongoDB Connection Error:', error.message);
+        // Retry connection after 5 seconds
+        setTimeout(connectDatabase, 5000);
     }
+};
 
-    // 4. Track Connection Updates (Connect, Disconnect, Reconnect)
-    sock.ev.on("connection.update", async (update) => {
-        const { connection, lastDisconnect } = update;
+// ============= API ROUTES =============
 
-        if (connection === "close") {
-            const shouldReconnect = (lastDisconnect.error instanceof Boom) 
-                ? lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut 
-                : true;
-
-            console.log(`\x1b[1;31mConnection closed due to: ${lastDisconnect.error}. Reconnecting: ${shouldReconnect}\x1b[0m`);
-            
-            if (shouldReconnect) {
-                startBot(); // Auto-restart if not logged out intentionally
-            } else {
-                console.log("\x1b[1;31mLogged out. Please delete the './session' folder and restart.\x1b[0m");
-                process.exit(1);
-            }
-        } else if (connection === "open") {
-            console.log("\x1b[1;32m\n=========================================");
-            console.log("   BRIAN-TECH CONNECTED SUCCESSFULLY!    ");
-            console.log("=========================================\x1b[0m\n");
-        }
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+    res.status(200).json({
+        status: 'healthy',
+        service: 'BRIAN-TECH Respiratory Monitoring',
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime(),
     });
+});
 
-    // Save session credentials whenever updated
-    sock.ev.on("creds.update", saveCreds);
-
-    // 5. Message Handler (The Command Core)
-    sock.ev.on("messages.upsert", async ({ messages, type }) => {
-        try {
-            if (type !== "notify") return;
-            const msg = messages[0];
-            if (!msg.message) return; // Ignore empty/system messages
-            
-            const from = msg.key.remoteJid;
-            const isGroup = from.endsWith("@g.us");
-            
-            // Extract the message text from various possible formats
-            const body = (msg.message.conversation || 
-                          msg.message.extendedTextMessage?.text || 
-                          msg.message.imageMessage?.caption || 
-                          msg.message.videoMessage?.caption || "")
-                         .trim();
-
-            const prefix = "!"; // Change your prefix here if desired
-            const isCmd = body.startsWith(prefix);
-            const command = isCmd ? body.slice(prefix.length).trim().split(/ +/).shift().toLowerCase() : "";
-            const args = isCmd ? body.trim().split(/ +/).slice(1) : [];
-            const text = args.join(" ");
-
-            // Check if the sender is you (owner status)
-            const sender = msg.key.participant || msg.key.remoteJid;
-            const isMe = msg.key.fromMe;
-
-            if (!isCmd) return;
-
-            // Simple reply function helper
-            const reply = async (txt) => {
-                await sock.sendMessage(from, { text: txt }, { quoted: msg });
-            };
-
-            // === COMMANDS SYSTEM ===
-            switch (command) {
-                case "ping":
-                    const start = Date.now();
-                    await reply("🚀 Calculating latency...");
-                    const latency = Date.now() - start;
-                    await sock.sendMessage(from, { text: `*Pong!* ⚡ \`${latency}ms\`` }, { quoted: msg });
-                    break;
-
-                case "menu":
-                    const menuText = `
-*╭━━━〔 𝗕𝗥𝗜𝗔𝗡-𝗧𝗘𝗖𝗛 〕━━━┈*
-┃ 
-┃ *⚡ Prefix:* \`${prefix}\`
-┃ *👤 Developer:* Brian Kimutai
-┃
-┣━━━〔 𝗨𝘁𝗶𝗹𝗶𝘁𝗶𝗲𝘀 〕━━━┈
-┃ 💻 *${prefix}ping* - Check speed latency
-┃ 📋 *${prefix}menu* - View command list
-┃ 👤 *${prefix}owner* - Contact developer
-┃
-┗━━━━━━━━━━━━━━━━━━━━┈
-`;
-                    await reply(menuText.trim());
-                    break;
-
-                case "owner":
-                    await reply("This bot is developed by *Brian Kimutai*. For inquiries, please reach out to: https://github.com/Spiffydewizard");
-                    break;
-
-                default:
-                    // Unknown command - can be left silent or replied to
-                    break;
-            }
-
-        } catch (err) {
-            console.error("Error processing message: ", err);
-        }
+// Root endpoint
+app.get('/', (req, res) => {
+    res.status(200).json({
+        name: 'BRIAN-TECH',
+        description: 'Respiratory Monitoring and Health Tracking Application',
+        version: '1.0.0',
+        author: 'Brian-kipz',
+        status: 'running',
+        endpoints: {
+            health: '/api/health',
+            monitoring: '/api/monitoring',
+            data: '/api/data',
+            stats: '/api/stats',
+        },
+        documentation: 'https://github.com/Brian-kipz/brian-tech#readme',
     });
-}
+});
 
-// Start the bot
-startBot().catch((err) => console.error("Critical Startup Error:", err));
+// Placeholder respiratory data endpoints
+app.get('/api/monitoring', (req, res) => {
+    res.status(200).json({
+        message: 'Respiratory monitoring endpoint',
+        features: [
+            'Real-time respiratory rate tracking',
+            'Breathing pattern analysis',
+            'Health alerts and notifications',
+            'Historical data storage',
+        ],
+        status: 'ready',
+    });
+});
+
+app.get('/api/data', (req, res) => {
+    res.status(200).json({
+        message: 'Respiratory data access endpoint',
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        status: 'ready',
+    });
+});
+
+app.get('/api/stats', (req, res) => {
+    res.status(200).json({
+        message: 'Health statistics endpoint',
+        metrics: ['daily_average', 'weekly_trends', 'alerts_generated', 'user_compliance'],
+        status: 'ready',
+    });
+});
+
+// Error handling for undefined routes
+app.use((req, res) => {
+    res.status(404).json({
+        error: 'Not Found',
+        message: `Route ${req.path} does not exist`,
+        method: req.method,
+    });
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+    console.error('❌ Error:', err.message);
+    res.status(err.status || 500).json({
+        error: 'Internal Server Error',
+        message: process.env.NODE_ENV === 'production' ? 'An error occurred' : err.message,
+    });
+});
+
+// ============= SERVER INITIALIZATION =============
+const startServer = async () => {
+    try {
+        // Connect to database
+        await connectDatabase();
+
+        const PORT = process.env.PORT || config.server.port || 3000;
+        
+        app.listen(PORT, () => {
+            console.log('\n' + '='.repeat(50));
+            console.log('🚀 BRIAN-TECH Server Started Successfully');
+            console.log('='.repeat(50));
+            console.log(`📡 Server running on: http://localhost:${PORT}`);
+            console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+            console.log(`📊 API Health: GET http://localhost:${PORT}/api/health`);
+            console.log('='.repeat(50) + '\n');
+        });
+
+    } catch (error) {
+        console.error('❌ Failed to start server:', error.message);
+        process.exit(1);
+    }
+};
+
+// Handle graceful shutdown
+process.on('SIGINT', () => {
+    console.log('\n📴 Shutting down gracefully...');
+    mongoose.connection.close(() => {
+        console.log('✅ MongoDB connection closed');
+        process.exit(0);
+    });
+});
+
+process.on('SIGTERM', () => {
+    console.log('\n📴 Terminating server...');
+    process.exit(0);
+});
+
+// Start the application
+startServer();
+
+module.exports = app;
