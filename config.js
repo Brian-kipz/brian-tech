@@ -15,8 +15,8 @@ const config = {
 
   // Database Configuration
   database: {
-    // Fallback updated to use your exact MongoDB connection code
-    url: process.env.DATABASE_URL || 'D299125ce161011f0452995de67c653a',
+    // Corrected to include the mandatory mongodb:// scheme
+    url: process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/D299125ce161011f0452995de67c653a',
     host: process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 27017,
     name: process.env.DB_NAME || 'D299125ce161011f0452995de67c653a',
